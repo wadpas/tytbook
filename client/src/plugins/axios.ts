@@ -9,9 +9,12 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
 	(config) => {
-		const localToken = JSON.parse(localStorage.getItem('token'))
+		const localToken = JSON.parse(localStorage.getItem('token') as string)
 
-		if (!localToken || jwtDecode(localToken).exp * 1000 < Date.now()) {
+		if (!localToken) {
+			useAuthStore().logoutUser()
+		} else if (jwtDecode(localToken).exp! * 1000 < Date.now()) {
+			localStorage.removeItem('token')
 			useAuthStore().logoutUser()
 		} else {
 			const { token } = storeToRefs(useAuthStore())

@@ -3,9 +3,9 @@ import { ref, computed } from 'vue'
 import axios from '../plugins/axios'
 
 export const useAuthStore = defineStore('AuthStore', () => {
-	const token = ref(null)
+	const token = ref('')
 
-	async function registerUser(payload) {
+	async function registerUser(payload: Object) {
 		try {
 			const { data } = await axios.post('/auth/register', payload)
 			const dataToken = JSON.stringify(data.token)
@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('AuthStore', () => {
 		}
 	}
 
-	async function loginUser(payload) {
+	async function loginUser(payload: Object) {
 		try {
 			const { data } = await axios.post('/auth/login', payload)
 			const dataToken = JSON.stringify(data.token)
@@ -29,7 +29,7 @@ export const useAuthStore = defineStore('AuthStore', () => {
 
 	async function logoutUser() {
 		try {
-			token.value = null
+			token.value = ''
 			localStorage.removeItem('token')
 		} catch (error) {
 			console.log(error)

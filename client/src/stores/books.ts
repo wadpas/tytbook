@@ -5,7 +5,7 @@ import axios from '../plugins/axios'
 export const useBooksStore = defineStore('BooksStore', () => {
 	const books = ref([])
 
-	async function getBooks(query) {
+	async function getBooks(query: Object) {
 		try {
 			const { data } = await axios.get('/books', {
 				params: query,

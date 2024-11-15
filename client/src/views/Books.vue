@@ -5,7 +5,7 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 	import { onMounted } from 'vue'
 	import { storeToRefs } from 'pinia'
 	import { useBooksStore } from '@/stores/books'
@@ -14,6 +14,6 @@
 	const { books } = storeToRefs(booksStore)
 
 	onMounted(async () => {
-		await booksStore.getBooks()
+		await booksStore.getBooks({})
 	})
 </script>

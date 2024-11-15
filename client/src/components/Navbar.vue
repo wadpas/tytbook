@@ -7,8 +7,8 @@
 				<img
 					src="../../tytbook.svg"
 					class="h-8"
-					alt="Тутbook Logo" />
-				<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ТУТBOOK</span>
+					alt="Flowbite Logo" />
+				<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Тутbook</span>
 			</a>
 			<button
 				data-collapse-toggle="navbar-default"
@@ -35,7 +35,7 @@
 				class="hidden w-full md:block md:w-auto"
 				id="navbar-default">
 				<ul
-					class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+					class="flex flex-col p-4 mt-4 font-medium uppercase border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 					<li>
 						<a
 							href="#"
@@ -78,4 +78,4 @@
 	</nav>
 </template>
 
-<script setup></script>
+<script setup lang="ts"></script>
