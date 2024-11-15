@@ -8,7 +8,7 @@ const {
 	getSingleOrder,
 	getCurrentUserOrders,
 	updateOrder,
-} = require('../controllers/orderController')
+} = require('../controllers/orders')
 
 router.route('/').post(authenticateUser, createOrder).get(authenticateUser, authorizePermissions('admin'), getAllOrders)
 router.route('/showAllMyOrders').get(authenticateUser, getCurrentUserOrders)

@@ -1,5 +1,5 @@
 const Order = require('../models/Order')
-const Product = require('../models/Product')
+const Book = require('../models/Book')
 const { StatusCodes } = require('http-status-codes')
 const { attachCookiesToResponse, checkPermissions } = require('../utils')
 const CustomError = require('../errors')
@@ -21,17 +21,17 @@ const createOrder = async (req, res) => {
 	let orderItems = []
 	let subtotal = 0
 	for (const item of cartItems) {
-		const dbProduct = await Product.findOne({ _id: item.product })
-		if (!dbProduct) {
-			throw new CustomError.NotFoundError(`No product with id : ${item.product}`)
+		const dbBook = await Book.findOne({ _id: item.book })
+		if (!dbBook) {
+			throw new CustomError.NotFoundError(`No book with id : ${item.book}`)
 		}
-		const { name, price, image, _id } = dbProduct
+		const { name, price, image, _id } = dbBook
 		const singleOrderItem = {
 			amount: item.amount,
 			name,
 			price,
 			image,
-			product: _id,
+			book: _id,
 		}
 		orderItems = [...orderItems, singleOrderItem]
 		subtotal += item.amount * price

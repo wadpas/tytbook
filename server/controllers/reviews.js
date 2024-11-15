@@ -1,21 +1,21 @@
 const { StatusCodes } = require('http-status-codes')
 const { checkPermissions } = require('../utils')
 const Review = require('../models/Review')
-const Product = require('../models/Product')
+const Book = require('../models/Book')
 const CustomError = require('../errors')
 
 const createReview = async (req, res) => {
-	const { product: productId } = req.body
-	const product = await Product.findOne({ _id: productId })
-	if (!product) {
-		throw new CustomError.NotFoundError(`No product with id : ${productId}`)
+	const { book: bookId } = req.body
+	const book = await Book.findOne({ _id: bookId })
+	if (!book) {
+		throw new CustomError.NotFoundError(`No book with id : ${bookId}`)
 	}
 	const alreadySubmitted = await Review.findOne({
-		product: productId,
+		book: bookId,
 		user: req.user.userId,
 	})
 	if (alreadySubmitted) {
-		throw new CustomError.BadRequestError('Already submitted review for this product')
+		throw new CustomError.BadRequestError('Already submitted review for this book')
 	}
 	req.body.user = req.user.userId
 	const review = await Review.create({ ...req.body })
@@ -24,7 +24,7 @@ const createReview = async (req, res) => {
 
 const getAllReviews = async (req, res) => {
 	const reviews = await Review.find({})
-		.populate({ path: 'product', select: 'name company' })
+		.populate({ path: 'book', select: 'name company' })
 		.populate({ path: 'user', select: 'name' })
 	res.status(StatusCodes.OK).json({ reviews, count: reviews.length })
 }
@@ -64,9 +64,9 @@ const deleteReview = async (req, res) => {
 	res.status(StatusCodes.OK).json({ msg: 'Success! Review removed' })
 }
 
-const getSingleProductReviews = async (req, res) => {
-	const { id: productId } = req.params
-	const reviews = await Review.find({ product: productId })
+const getSingleBookReviews = async (req, res) => {
+	const { id: bookId } = req.params
+	const reviews = await Review.find({ book: bookId })
 	res.status(StatusCodes.OK).json({ reviews, count: reviews.length })
 }
 
@@ -76,5 +76,5 @@ module.exports = {
 	getSingleReview,
 	updateReview,
 	deleteReview,
-	getSingleProductReviews,
+	getSingleBookReviews,
 }
