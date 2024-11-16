@@ -8,7 +8,7 @@
 					src="../../tytbook.svg"
 					class="h-8"
 					alt="Flowbite Logo" />
-				<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Тутbook</span>
+				<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ТутBook</span>
 			</a>
 			<button
 				data-collapse-toggle="navbar-default"
@@ -35,42 +35,33 @@
 				class="hidden w-full md:block md:w-auto"
 				id="navbar-default">
 				<ul
-					class="flex flex-col p-4 mt-4 font-medium uppercase border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+					class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 					<li>
-						<a
-							href="#"
-							class="block px-3 py-2 text-white uppercase bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+						<router-link
+							:to="{ name: '/' }"
+							class="block px-3 py-2 md:p-0"
+							activeClass="block px-3 py-2 text-white bg-orange-500 rounded md:bg-transparent md:text-orange-600 md:p-0 dark:text-white md:dark:text-orange-600"
 							aria-current="page">
 							Home
-						</a>
+						</router-link>
 					</li>
 					<li>
-						<a
-							href="#"
-							class="block px-3 py-2 text-gray-900 uppercase rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+						<router-link
+							:to="{ name: '/books/' }"
+							class="block px-3 py-2 md:p-0"
+							activeClass="block px-3 py-2 text-white bg-orange-500 rounded md:bg-transparent md:text-orange-600 md:p-0 dark:text-white md:dark:text-orange-600"
+							aria-current="page">
+							Books
+						</router-link>
+					</li>
+					<li>
+						<router-link
+							:to="{ name: '/about' }"
+							class="block px-3 py-2 md:p-0"
+							activeClass="block px-3 py-2 text-white bg-orange-500 rounded md:bg-transparent md:text-orange-600 md:p-0 dark:text-white md:dark:text-orange-600"
+							aria-current="page">
 							About
-						</a>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-							Services
-						</a>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-							Pricing
-						</a>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-							Contact
-						</a>
+						</router-link>
 					</li>
 				</ul>
 			</div>

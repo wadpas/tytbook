@@ -1,21 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Books from '../views/Books.vue'
-import NotFound from '../views/NotFound.vue'
+import { createRouter, createWebHistory } from 'vue-router/auto'
+import { routes } from 'vue-router/auto-routes'
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
-	routes: [
-		{
-			path: '/',
-			name: 'home',
-			component: Books,
-		},
-		{
-			path: '/:pathMatch(.*)*',
-			name: 'not-found',
-			component: NotFound,
-		},
-	],
+	routes,
 })
 
 export default router
