@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function HomeScreen() {
+export default function GenresScreen() {
   return (
     <View className='container h-full mx-auto bg-white'>
-      <Text>home</Text>
+      <Text>genres</Text>
     </View>
   )
 }

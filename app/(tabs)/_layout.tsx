@@ -1,45 +1,64 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Tabs } from 'expo-router'
+import React, { useState } from 'react'
+import { Dimensions, Platform } from 'react-native'
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { HapticTab } from '@/components/HapticTab'
+import { IconSymbol } from '@/components/ui/IconSymbol'
+import TabBarBackground from '@/components/ui/TabBarBackground'
+import { Colors } from '@/constants/Colors'
+import { useColorScheme } from '@/hooks/useColorScheme'
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const [windowWidth, setWindowWidth] = useState(Dimensions.get('window').width)
+  let largeScreen = windowWidth > 1036
+  const colorScheme = useColorScheme()
+
+  Dimensions.addEventListener('change', ({ window }) => {
+    setWindowWidth(window.width)
+  })
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarPosition: largeScreen ? 'top' : 'bottom',
         headerShown: false,
-        tabBarButton: HapticTab,
+        tabBarLabelStyle: {
+          overflow: 'visible',
+          textTransform: largeScreen ? 'uppercase' : 'none',
+        },
         tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        tabBarStyle: {
+          height: 52,
+          alignItems: largeScreen ? 'center' : 'stretch',
+        },
       }}>
       <Tabs.Screen
-        name="index"
+        name='index'
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Головна',
+          tabBarIcon: ({ color }) => (
+            <IconSymbol
+              size={largeScreen ? 18 : 28}
+              name='home'
+              color={color}
+            />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name='genres'
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Жанри',
+          tabBarIcon: ({ color }) => (
+            <IconSymbol
+              size={largeScreen ? 18 : 28}
+              name='library-books'
+              color={color}
+            />
+          ),
         }}
       />
     </Tabs>
-  );
+  )
 }
