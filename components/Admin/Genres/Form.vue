@@ -67,7 +67,7 @@
   const router = useRouter()
   const route = useRoute()
 
-  const { data: currentGenre } = await useFetch<Genre>(`/api/genres/${(route.params as RouteParams).slug}`)
+  const { data: currentGenre } = await useFetch<Genre>(`/api/genres/${route.params.slug}`)
 
   watchEffect(() => {
     if (route.params.slug === 'new') {
@@ -86,7 +86,7 @@
   const onSubmit = form.handleSubmit(async (values) => {
     try {
       if (isEditing.value) {
-        await $fetch(`/api/genres/${(route.params as RouteParams).slug}`, {
+        await $fetch(`/api/genres/${route.params.slug}`, {
           method: 'PATCH',
           body: values,
         })
@@ -114,7 +114,7 @@
 
   const deleteGenre = async () => {
     try {
-      await $fetch(`/api/genres/${(route.params as RouteParams).slug}`, {
+      await $fetch(`/api/genres/${route.params.slug}`, {
         method: 'DELETE',
       })
       navigateTo('/admin/genres')

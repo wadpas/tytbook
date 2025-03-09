@@ -15,7 +15,6 @@
   </div>
   <!-- @vue-ignore -->
   <DataTable
-    v-if="status === 'success'"
     :columns="columns"
     :data="books"
     column-to-search="title" />
@@ -27,6 +26,7 @@
 
   const { data: books, status } = await useFetch<Book[]>(`/api/books`, {
     key: 'books',
+    lazy: true,
   })
 </script>
 

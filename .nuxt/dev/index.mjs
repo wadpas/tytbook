@@ -2297,6 +2297,18 @@ const index_patch$3 = /*#__PURE__*/Object.freeze({
 });
 
 const index_get$4 = defineEventHandler(async (event) => {
+  const { genreId, authorId } = getQuery$1(event);
+  const queryParams = {};
+  if (genreId) {
+    queryParams.genreIds = {
+      has: genreId
+    };
+  }
+  if (authorId) {
+    queryParams.authorIds = {
+      has: authorId
+    };
+  }
   const books = await db.book.findMany({
     orderBy: {
       title: "asc"
@@ -2308,7 +2320,8 @@ const index_get$4 = defineEventHandler(async (event) => {
     omit: {
       authorIds: true,
       genreIds: true
-    }
+    },
+    where: queryParams
   });
   return books;
 });

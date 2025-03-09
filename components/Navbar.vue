@@ -1,14 +1,14 @@
 <template>
   <header class="z-10 shadow-sm">
-    <div class="flex items-center justify-between h-16 max-w-[1600px] mx-auto">
+    <div class="flex items-center justify-between max-w-[1600px] mx-auto p-4">
       <NuxtLink
         to="/"
         class="flex hover:cursor-pointer">
         <NuxtImg
           src="/logo.svg"
           alt="logo"
-          class="h-8 mr-2" />
-        <div class="mb-2 text-2xl">Тутbook</div>
+          class="mr-2 h-9" />
+        <h1 class="text-2xl">Тутbook</h1>
       </NuxtLink>
       <nav class="flex items-center space-x-4 lg:space-x-6">
         <template v-if="user">

@@ -227,7 +227,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { APIError, Book, Genre, RouteParams } from '~/types'
+  import type { APIError, Author, Book, Genre } from '~/types'
   import { toTypedSchema } from '@vee-validate/zod'
   import { useForm } from 'vee-validate'
   import { bookSchema } from '~/server/utils/validations'
@@ -238,7 +238,7 @@
   const router = useRouter()
   const route = useRoute()
 
-  const { data: currentBook } = await useFetch<Book>(`/api/books/${(route.params as RouteParams).slug}`)
+  const { data: currentBook } = await useFetch<Book>(`/api/books/${route.params.slug}`)
   const { data: authors } = await useFetch<Author[]>(`/api/authors`)
   const { data: genres } = await useFetch<Genre[]>(`/api/genres`)
 
@@ -272,7 +272,7 @@
     values.price = Math.max(Math.floor(values.pages - Math.random() * 200), 199)
     try {
       if (isEditing.value) {
-        await $fetch(`/api/books/${(route.params as RouteParams).slug}`, {
+        await $fetch(`/api/books/${route.params.slug}`, {
           method: 'PATCH',
           body: values,
         })
@@ -300,7 +300,7 @@
 
   const deleteBook = async () => {
     try {
-      await $fetch(`/api/books/${(route.params as RouteParams).slug}`, {
+      await $fetch(`/api/books/${route.params.slug}`, {
         method: 'DELETE',
       })
       navigateTo('/admin/books')

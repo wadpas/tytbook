@@ -1,3 +1,5 @@
+import type { Author, Genre } from '@prisma/client'
+
 export type APIError = {
   statusCode: number
   statusMessage: string
@@ -24,16 +26,4 @@ export type Book = {
   price: number
   isFeatured: boolean
   isAvailable: boolean
-}
-
-export type Author = {
-  id: string
-  name: string
-  slug: string
-}
-
-export type Genre = {
-  id: string
-  name: string
-  slug: string
 }

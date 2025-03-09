@@ -1,1 +1,1 @@
-{"id":"dev","timestamp":1741282815127,"matcher":{"static":{"/":{"redirect":"/books"}},"wildcard":{},"dynamic":{}},"prerendered":[]}
+{"id":"dev","timestamp":1741553314721,"matcher":{"static":{"/":{"redirect":"/books"}},"wildcard":{},"dynamic":{}},"prerendered":[]}

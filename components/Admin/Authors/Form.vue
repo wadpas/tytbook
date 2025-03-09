@@ -67,7 +67,7 @@
   const router = useRouter()
   const route = useRoute()
 
-  const { data: currentAuthor } = await useFetch<Author>(`/api/authors/${(route.params as RouteParams).slug}`)
+  const { data: currentAuthor } = await useFetch<Author>(`/api/authors/${route.params.slug}`)
 
   watchEffect(() => {
     if (route.params.slug === 'new') {
@@ -86,7 +86,7 @@
   const onSubmit = form.handleSubmit(async (values) => {
     try {
       if (isEditing.value) {
-        await $fetch(`/api/authors/${(route.params as RouteParams).slug}`, {
+        await $fetch(`/api/authors/${route.params.slug}`, {
           method: 'PATCH',
           body: values,
         })
@@ -114,7 +114,7 @@
 
   const deleteAuthor = async () => {
     try {
-      await $fetch(`/api/authors/${(route.params as RouteParams).slug}`, {
+      await $fetch(`/api/authors/${route.params.slug}`, {
         method: 'DELETE',
       })
       navigateTo('/admin/authors')
